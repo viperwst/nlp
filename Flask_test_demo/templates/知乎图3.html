@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>舆情分析</title>
+    <link rel="stylesheet" href="../static/home.css">
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <!-- <script src="bootstrap/"></script> -->
+</head>
+<body>
+    <div class="nav">
+        <div class="navout">
+            <div class="nav-label">
+                <ul>
+                    <li id="h"><a href="#">时间分布图</a></li>
+                    <li id="h"><a href="#">时间分布折线图</a></li>
+                    <li id="h"><a href="#">占比饼图</a></li>
+                </ul>
+
+                <div class="nav-fun">
+                <span>关键字：</span>
+                <input type="text" class="input">
+                </div>
+                <div class="one">
+                <span>爬取页数:</span>
+                <input type="text" class="input">
+                </div>
+
+                <div class="two">
+                <input type="submit" value="微博爬取">
+                <input type="submit" value="知乎爬取">
+                </div>
+            </div>
+        </div>
+        <div class="navout2">
+            <div class="navout3">
+
+
+            <div id="container2" style="width: 600px;height:400px;">
+    <!-- 引入 highcharts.js -->
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script>
+                 <!--占比饼图-->
+        var datas={{data|tojson}}
+        console.log(datas);
+        var data2=JSON.parse(datas);
+        console.log(data2['count']);
+        var arr=[];
+        var values=[];
+        for(var key in data2['count']){
+            arr.push(key);
+            values.push((parseInt(data2['count'][key])));
+        }
+
+
+        var pie = {
+             series: [{
+                type: 'pie',
+                name: '浏览器访问量占比',
+                data: [
+                    [arr[0], values[0]],
+                    [arr[1], values[1]]
+
+                ]
+             }]
+        };
+        var chart2 = Highcharts.chart('container2', pie);
+        </script>
+    </div>
+</div>
+
+
+            </div>
+        </div>
+    </div>
+</body>

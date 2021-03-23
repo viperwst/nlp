@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>舆情分析</title>
+    <link rel="stylesheet" href="../static/home.css">
+    <!-- <script src="bootstrap/"></script> -->
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+</head>
+<body>
+    <div class="nav">
+        <div class="navout">
+            <div class="nav-label">
+                <ul>
+                    <li id="line"><a >话题舆情</a></li>
+                    <li id="plot"><a >时间分布折线图</a></li>
+                    <li id="pie"><a >访问量占比</a></li>
+                </ul>
+                <form method="post" action="/home" id="form_table">
+                <div class="nav-fun">
+                <span>关键字：</span>
+                <input type="text" class="input" name="key_word">
+                </div>
+                <div class="one">
+                <span>爬取页数:</span>
+                <input type="text" class="input" name="page">
+                </div>
+                    <div class="two">
+                <input type="hidden" value="" id="hidden" name="spi">
+                <input value="微博爬取" id="wb" type="button">
+                <input value="知乎爬取" id="zh" type="button">
+                </div>
+
+                </form>
+                <script>
+                    $('#wb').click(function () {
+                          $('#hidden').attr('value','wb');
+                        $('#form_table').submit()
+                    });
+                    $('#zh').click(function () {
+                          $('#hidden').attr('value','zh');
+                         $('#form_table').submit()
+                    });
+                </script>
+ <script>
+    $(document).ready(function () {
+        $('#line').click(function () {
+            console.log('click');
+            $a=$('#form_table');
+            console.log($a.attr('action'));
+                $a.attr('action','/table1');
+                console.log($a.attr('action'));
+           $b= $a.attr('action');
+            console.log($b);
+            //提交
+            $a.submit();
+        });
+                $('#plot').click(function () {
+                $a=$('#form_table');
+                $a.attr('action','/table2');
+           $b= $a.attr('action');
+            console.log($b);
+            $a.submit();
+        });
+                $('#pie').click(function () {
+              $a=$('#form_table');
+                $a.attr('action','/table3');
+           $b= $a.attr('action');
+            console.log($b);
+            $a.submit();
+        });
+    })
+</script>
+
+
+            </div>
+        </div>
+        <div class="navout2">
+            <div class="navout3">
+                <p>
+                    你可以在这里对任何你感兴趣的话题从微博和知乎两个角度进行舆情分析
+                </p>
+            </div>
+        </div>
+    </div>
+
+<script>
+    var arr=['1','2','3'];
+    arr.reverse();
+    console.log(arr)
+</script>
+</body>

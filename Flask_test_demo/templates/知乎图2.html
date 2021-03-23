@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>舆情分析</title>
+    <link rel="stylesheet" href="../static/home.css">
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <!-- <script src="bootstrap/"></script> -->
+</head>
+<body>
+    <div class="nav">
+        <div class="navout">
+            <div class="nav-label">
+                <ul>
+                    <li id="h"><a href="#">时间分布图</a></li>
+                    <li id="h"><a href="#">时间分布折线图</a></li>
+                    <li id="h"><a href="#">占比饼图</a></li>
+                </ul>
+
+                <div class="nav-fun">
+                <span>关键字：</span>
+                <input type="text" class="input">
+                </div>
+                <div class="one">
+                <span>爬取页数:</span>
+                <input type="text" class="input">
+                </div>
+
+                <div class="two">
+                <input type="submit" value="微博爬取">
+                <input type="submit" value="知乎爬取">
+                </div>
+            </div>
+        </div>
+        <div class="navout2">
+            <div class="navout3">
+
+
+            <div id="container3" style="width: 600px;height:400px;">
+    <!-- 引入 highcharts.js -->
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+
+    <script>
+        // 图表配置
+        var datas={{data|tojson}}
+        console.log(datas);
+        var data2=JSON.parse(datas);
+        console.log(data2['time']);
+        var arr=[];
+        var values=[];
+        for(var key in data2['time']){
+            arr.push(key);
+            values.push(data2['time'][key]);
+        }
+        console.log(arr);
+        console.log(values);
+        arr.reverse();
+        values.reverse();
+        var line = {
+            chart: {
+                type: 'line'                          //指定图表的类型，默认是折线图（line）
+            },
+            title: {
+                text: '时间分布图'                 // 标题
+            },
+            xAxis: {
+                categories:arr  // x 轴分类
+            },
+            yAxis: {
+                title: {
+                    text: '频率'                // y 轴标题
+                }
+            },
+            series: [{                              // 数据列
+                name: '时间分布折线图',                        // 数据列名
+                data: values                    // 数据
+            }]
+        };
+
+
+        // 图表初始化函数
+        var chart3 = Highcharts.chart('container3', line);
+
+    </script>
+</div>
+<div >
+    <img src="../static/wordcoud.png">
+</div>
+
+
+            </div>
+        </div>
+    </div>
+</body>

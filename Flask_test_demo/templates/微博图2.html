@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>舆情分析</title>
+    <link rel="stylesheet" href="../static/home.css">
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+    <!-- <script src="bootstrap/"></script> -->
+</head>
+<body>
+    <div class="nav">
+        <div class="navout">
+            <div class="nav-label">
+                <ul>
+                    <li id="line"><a >频率统计图</a></li>
+                    <li id="plot"><a >时间分布折线图</a></li>
+                    <li id="pie"><a>占比饼图</a></li>
+                </ul>
+
+                <form method="post" action="/" id="form_table">
+                <div class="nav-fun">
+                <span>关键字：</span>
+                <input type="text" class="input" name="key_word">
+                </div>
+                <div class="one">
+                <span>爬取页数:</span>
+                <input type="text" class="input" name="page">
+                </div>
+                    <div class="two">
+
+                <input type="submit" value="微博爬取">
+                <input type="submit" value="知乎爬取">
+                </div>
+
+                </form>
+
+                    <script>
+    $(document).ready(function () {
+        $('#line').click(function () {
+            console.log('click');
+            $a=$('#form_table');
+            console.log($a.attr('action'));
+                $a.attr('action','/table1');
+                console.log($a.attr('action'));
+           $b= $a.attr('action');
+            console.log($b);
+            //提交
+            $a.submit();
+        });
+                $('#plot').click(function () {
+                $a=$('#form_table');
+                $a.attr('action','/table2');
+           $b= $a.attr('action');
+            console.log($b);
+            $a.submit();
+        });
+                $('#pie').click(function () {
+              $a=$('#form_table');
+                $a.attr('action','/table3');
+           $b= $a.attr('action');
+            console.log($b);
+            $a.submit();
+        });
+    })
+</script>
+
+            </div>
+        </div>
+        <div class="navout2">
+            <div class="navout3">
+
+
+            <div id="container3" style="width: 600px;height:400px;">
+    <!-- 引入 highcharts.js -->
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+
+    <script>
+        // 图表配置
+        var datas={{data|tojson}}
+        console.log(datas);
+        var data2=JSON.parse(datas);
+        console.log(data2['time']);
+        var arr=[];
+        var values=[];
+        for(var key in data2['time']){
+            arr.push(key);
+            values.push(data2['time'][key]);
+        }
+        console.log(arr);
+        console.log(values);
+        arr.reverse();
+        values.reverse();
+        var line = {
+            chart: {
+                type: 'line'                          //指定图表的类型，默认是折线图（line）
+            },
+            title: {
+                text: '时间分布图'                 // 标题
+            },
+            xAxis: {
+                categories:arr  // x 轴分类
+            },
+            yAxis: {
+                title: {
+                    text: '频率'                // y 轴标题
+                }
+            },
+            series: [{                              // 数据列
+                name: '时间分布折线图',                        // 数据列名
+                data: values                    // 数据
+            }]
+        };
+
+
+        // 图表初始化函数
+        var chart3 = Highcharts.chart('container3', line);
+
+    </script>
+</div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
